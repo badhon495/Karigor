@@ -1,93 +1,147 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5">
-    <h2 class="text-center mb-4">Book an Appointment</h2>
+<div class="container py-4">
+    <h2 class="mb-4">Book an Appointment</h2>
 
     @if($errors->any())
         <div class="alert alert-danger">
-            {{ $errors->first() }}
+            <ul class="mb-0">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
     @endif
 
-    <form method="POST" action="{{ url('/book-appointment') }}">
+    <form action="/book-appointment" method="POST" id="appointmentForm">
         @csrf
-
-        <div class="mb-3">
-            <label>Name</label>
-            <input name="name" class="form-control" required>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label>Name</label>
+                <input type="text" name="name" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Phone Number</label>
+                <input type="text" name="phone" class="form-control" required>
+            </div>
         </div>
-
         <div class="mb-3">
             <label>Address</label>
-            <input name="address" class="form-control" required>
+            <textarea name="address" class="form-control" required></textarea>
         </div>
-
-        <div class="mb-3">
-            <label>Phone</label>
-            <input name="phone" class="form-control" required>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label>Car License Number</label>
+                <input type="text" name="car_license" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Car Engine Number</label>
+                <input type="text" name="car_engine" class="form-control" required>
+            </div>
         </div>
-
-        <div class="mb-3">
-            <label>Car License Number</label>
-            <input name="car_license" class="form-control" required>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label>Appointment Date</label>
+                <input type="date" name="appointment_date" id="appointment_date" class="form-control" 
+                    min="{{ date('Y-m-d') }}" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Select Mechanic</label>
+                <select name="mechanic_id" id="mechanic_select" class="form-control" required>
+                    <option value="">-- Select a Mechanic --</option>
+                    @foreach($mechanics as $m)
+                        @if($m->slots_left > 0)
+                        <option value="{{ $m->id }}" data-slots="{{ $m->slots_left }}">{{ $m->name }} ({{ $m->slots_left }} slots available)</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
         </div>
-
-        <div class="mb-3">
-            <label>Car Engine Number</label>
-            <input name="car_engine" type="number" class="form-control" required>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label>Select Time Slot</label>
+                <select name="time_slot" id="time_slot_select" class="form-control" required disabled>
+                    <option value="">-- Select a Date and Mechanic First --</option>
+                </select>
+            </div>
         </div>
-
-        <div class="mb-3">
-            <label>Appointment Date</label>
-            <input name="appointment_date" type="date" class="form-control" required>
-        </div>
-
-        <div class="mb-3">
-            <label>Choose Mechanic</label>
-            <select name="mechanic_id" class="form-control" required>
-                <option value="">Select a Mechanic</option>
-                @foreach($mechanics as $m)
-                    <option value="{{ $m->id }}" {{ $m->slots_left == 0 ? 'disabled' : '' }}>
-                        {{ $m->name }} – 
-                        {{ $m->slots_left > 0 
-                            ? ($m->slots_left . ' slot(s) left | Next: ' . $m->next_slot_time) 
-                            : 'Fully booked' }}
-                    </option>
-                @endforeach
-            </select>
-            
-        </div>
-
-        <div class="d-flex justify-content-between">
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <a href="{{ url('/contact-admin') }}" class="btn btn-secondary">Contact Admin</a>
-        </div>
+        <button type="submit" class="btn btn-primary">Book Appointment</button>
     </form>
 </div>
 
 <script>
-    const mechanicSelect = document.querySelector('select[name="mechanic_id"]');
-    const dateInput = document.querySelector('input[name="appointment_date"]');
+document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('appointment_date');
+    const mechanicSelect = document.getElementById('mechanic_select');
+    const timeSlotSelect = document.getElementById('time_slot_select');
 
-    dateInput.addEventListener('change', function () {
-        const date = this.value;
+    // Function to update available mechanics based on date
+    function updateAvailableMechanics() {
+        const selectedDate = dateInput.value;
+        
+        if (!selectedDate) return;
 
-        fetch(`/api/available-mechanics?date=${date}`)
-            .then(res => res.json())
-            .then(data => {
-                mechanicSelect.innerHTML = '<option value="">Select a Mechanic</option>';
-
-                data.forEach(m => {
-                    const option = document.createElement('option');
-                    option.value = m.id;
-                    option.disabled = m.slots_left === 0;
-                    option.textContent = `${m.name} – ${m.slots_left > 0 ? (m.slots_left + ' slot(s) left | Next: ' + m.next_slot_time) : 'Fully booked'}`;
-                    mechanicSelect.appendChild(option);
+        // Clear mechanic selection
+        mechanicSelect.innerHTML = '<option value="">-- Loading Mechanics --</option>';
+        
+        // Fetch available mechanics for selected date
+        fetch(`/api/available-mechanics?date=${selectedDate}`)
+            .then(response => response.json())
+            .then(mechanics => {
+                mechanicSelect.innerHTML = '<option value="">-- Select a Mechanic --</option>';
+                mechanics.forEach(mechanic => {
+                    if (mechanic.slots_left > 0) {
+                        const option = document.createElement('option');
+                        option.value = mechanic.id;
+                        option.textContent = `${mechanic.name} (${mechanic.slots_left} slots available)`;
+                        option.dataset.slotsLeft = mechanic.slots_left;
+                        option.dataset.timeSlots = JSON.stringify(mechanic.available_slots);
+                        mechanicSelect.appendChild(option);
+                    }
                 });
+                
+                if (mechanicSelect.options.length <= 1) {
+                    const option = document.createElement('option');
+                    option.textContent = 'No mechanics available on this date';
+                    option.disabled = true;
+                    mechanicSelect.appendChild(option);
+                }
             });
-    });
-</script>
+    }
 
-</body>
+    // Update time slots based on selected mechanic
+    function updateTimeSlots() {
+        timeSlotSelect.innerHTML = '<option value="">-- Select a Time Slot --</option>';
+        timeSlotSelect.disabled = true;
+        
+        const selectedOption = mechanicSelect.options[mechanicSelect.selectedIndex];
+        if (!selectedOption || !selectedOption.value) return;
+        
+        try {
+            const timeSlots = JSON.parse(selectedOption.dataset.timeSlots);
+            if (timeSlots && timeSlots.length) {
+                timeSlots.forEach(slot => {
+                    const option = document.createElement('option');
+                    option.value = slot;
+                    option.textContent = slot;
+                    timeSlotSelect.appendChild(option);
+                });
+                timeSlotSelect.disabled = false;
+            }
+        } catch (e) {
+            console.error('Error parsing time slots:', e);
+        }
+    }
+
+    // Set up event listeners
+    dateInput.addEventListener('change', updateAvailableMechanics);
+    mechanicSelect.addEventListener('change', updateTimeSlots);
+    
+    // Initialize if date is pre-filled (e.g., after validation error)
+    if (dateInput.value) {
+        updateAvailableMechanics();
+    }
+});
+</script>
 @endsection

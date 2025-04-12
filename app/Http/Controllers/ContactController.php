@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ContactIssue;
+use Illuminate\Support\Facades\Log;
 
 class ContactController extends Controller
 {
@@ -21,9 +22,15 @@ class ContactController extends Controller
             'problem_description' => 'required',
         ]);
 
-        // Directly create using request data since the field names now match
-        ContactIssue::create($validated);
+        try {
+            ContactIssue::create($validated);
+            Log::info('Contact issue created successfully');
 
-        return redirect('/')->with('success', 'Your issue has been submitted. Admin will contact you soon.');
+            // Return to same page with success message for popup notification
+            return back()->with('success_popup', 'Complaint Submitted Successfully');
+        } catch (\Exception $e) {
+            Log::error('Error saving contact issue: ' . $e->getMessage());
+            return back()->withErrors(['error' => 'Error submitting your complaint. Please try again.']);
+        }
     }
 }

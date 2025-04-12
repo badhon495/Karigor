@@ -153,11 +153,12 @@ class AppointmentController extends Controller
             $appointment->save();
             
             Log::info('Appointment created successfully with ID: ' . $appointment->id);
+            
+            // Return to the same page with success message for popup notification
+            return back()->with('success_popup', 'Appointment Created Successfully');
         } catch (\Exception $e) {
             Log::error('Error saving appointment: ' . $e->getMessage());
             return back()->withErrors(['database' => 'Error saving appointment. Please try again.']);
         }
-
-        return redirect('/')->with('success', 'Appointment successfully booked!');
     }
 }

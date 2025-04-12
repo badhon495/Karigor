@@ -70,6 +70,28 @@
     </form>
 </div>
 
+<!-- Success Popup Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="successModalLabel">Success</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="fa fa-check-circle text-success mb-3" style="font-size: 3rem;"></i>
+                <h4 id="successMessage">{{ session('success_popup') }}</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
+                <a href="/" class="btn btn-outline-secondary">Go to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const dateInput = document.getElementById('appointment_date');
@@ -142,6 +164,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (dateInput.value) {
         updateAvailableMechanics();
     }
+    
+    // Show success modal if session has success_popup message
+    @if(session('success_popup'))
+        $('#successModal').modal('show');
+    @endif
 });
 </script>
 @endsection

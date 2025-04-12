@@ -38,9 +38,6 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarsExample04">
                                 <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="{{ url('/') }}">Home</a>
-                                    </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('/book-appointment') }}">Book Appointment</a>
                                     </li>
@@ -64,6 +61,49 @@
     <main>
         @yield('content')
     </main>
+
+    <!-- footer -->
+    <footer id="contact">
+        <div class="footer">
+           <div class="container">
+              <div class="row align-items-center">
+                 <div class="col-md-4">
+                    <div class="titlepage">
+                       <h2>Contact Us</h2>
+                    </div>
+                 </div>
+              </div>
+           </div>
+
+           <div class="social_container">
+            <ul class="social_icon">
+               <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+               <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+               <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+               <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+            </ul>
+         </div>
+
+         <div class="col-md-8">
+            <ul class="location_icon">
+               <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i></a>Bangladesh</li>
+               <li><a href="#"><i class="fa fa-volume-control-phone" aria-hidden="true"></i></a>+71 9087654321</li>
+               <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a>admin@gmail.com</li>
+            </ul>
+         </div>
+
+           <div class="copyright">
+              <div class="container">
+                 <div class="row">
+                    <div class="col-md-12">
+                       <p>Copyright 2025 All Right Reserved By <a href="#">Karigor</a></p>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </footer>
+     <!-- end footer -->
 
     <!-- JavaScript files with proper asset paths -->
     <script src="{{ asset('js/js_temp/jquery.min.js') }}"></script>

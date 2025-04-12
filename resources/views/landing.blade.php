@@ -28,7 +28,7 @@
                         <div class="text-bg">
                            <h1>Premium Car Workshop</h1>
                            <p>Your vehicle deserves the best care. Our certified technicians provide comprehensive repair and maintenance services using state-of-the-art equipment and genuine parts to keep your car running at peak performance.</p>
-                           <a href="{{ url('/book-appointment') }}" class="btn btn-primary"> Appointment</a>
+                           <a href="{{ url('/book-appointment') }}" class="btn btn-primary"> Book Now</a>
                         </div>
                      </div>
                      <div class="col-md-6">
@@ -77,23 +77,23 @@
       <div class="row">
          <div class="col-md-4">
             <div class="box_text">
-               <h3>AUTO DIAGNOSE</h3>
+               <h3>DIAGNOSTICS</h3>
                <i><img src="{{ asset('css/images/thr.png') }}" alt="Auto Diagnose" /></i>
-               <p>ipsum dolor sit amet, consectetur adipiscing elit, sed d veniam, adipiscing elit, sed d veniam</p>
+               <p>State-of-the-art computer diagnostics to identify issues with precision. Our advanced equipment detects problems quickly for accurate repairs.</p>
             </div>
          </div>
          <div class="col-md-4">
             <div class="box_text">
-               <h3>AUTO DIAGNOSE</h3>
-               <i><img src="{{ asset('css/images/thr1.png') }}" alt="Auto Diagnose" /></i>
-               <p>ipsum dolor sit amet, consectetur adipiscing elit, sed d veniam, adipiscing elit, sed d veniam</p>
+               <h3>REPAIR SERVICE</h3>
+               <i><img src="{{ asset('css/images/thr1.png') }}" alt="Auto Repair" /></i>
+               <p>Expert technicians perform quality repairs for all vehicle makes and models. From engine work to electrical systems, we fix it right.</p>
             </div>
          </div>
          <div class="col-md-4">
             <div class="box_text">
-               <h3>AUTO DIAGNOSE</h3>
-               <i><img src="{{ asset('css/images/thr2.png') }}" alt="Auto Diagnose" /></i>
-               <p>ipsum dolor sit amet, consectetur adipiscing elit, sed d veniam, adipiscing elit, sed d veniam</p>
+               <h3>MAINTENANCE</h3>
+               <i><img src="{{ asset('css/images/thr2.png') }}" alt="Auto Maintenance" /></i>
+               <p>Regular maintenance packages to keep your vehicle running smoothly. Scheduled services prevent costly repairs and extend your car's life.</p>
             </div>
          </div>
       </div>
@@ -116,9 +116,9 @@
             <div class="col-md-10 offset-md-1">
                <div class="about_img">
                   <div class="about_box">
-                     <h3>Dolor sit amet, consectetur adipiscing elit</h3>
-                     <p>dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                     <a href="#" class="btn btn-primary">Read More</a>
+                     <h3>Professional Auto Service Since 2005</h3>
+                     <p>With over 20 years of experience in the automotive industry, our workshop has built a reputation for excellence and reliability. Our certified technicians are trained to handle all makes and models, using only genuine parts and the latest diagnostic equipment. We believe in transparent pricing, quality workmanship, and building long-term relationships with our customers. Whether you need routine maintenance, complex repairs, or performance upgrades, our team is dedicated to keeping your vehicle running at its best while providing exceptional customer service.</p>
+                     <a href="{{ url('/contact-admin') }}" class="btn btn-primary">Contact Us</a>
                   </div>
                </div>
             </div>
@@ -135,7 +135,7 @@
          <div class="col-md-12">
             <div class="titlepage">
                <h2>What We Do</h2>
-               <p>It is a long established fact that a reader will be distracted by the</p>
+               <p>Our comprehensive range of automotive services to keep your vehicle in perfect condition</p>
             </div>
          </div>
       </div>
@@ -147,7 +147,7 @@
                      <figure><img src="{{ asset('css/images/img1.png') }}" alt="Service" /></figure>
                   </div>
                   <div class="work_text">
-                     <h3>Quick repair<br><span class="blu">Total Service</span></h3>
+                     <h3>Engine Repair<br><span class="blu">Complete Overhaul</span></h3>
                   </div>
                </div>
                <div class="col-md-6 margin_bottom">
@@ -155,7 +155,7 @@
                      <figure><img src="{{ asset('css/images/img2.png') }}" alt="Service" /></figure>
                   </div>
                   <div class="work_text">
-                     <h3>Quick repair<br><span class="blu">Total Service</span></h3>
+                     <h3>Brake Service<br><span class="blu">Safety Assured</span></h3>
                   </div>
                </div>
                <div class="col-md-6 margin_bottom">
@@ -163,7 +163,7 @@
                      <figure><img src="{{ asset('css/images/img3.png') }}" alt="Service" /></figure>
                   </div>
                   <div class="work_text">
-                     <h3>Quick repair<br><span class="blu">Total Service</span></h3>
+                     <h3>Electric Systems<br><span class="blu">Diagnostic & Repair</span></h3>
                   </div>
                </div>
                <div class="col-md-6 margin_bottom">
@@ -171,11 +171,11 @@
                      <figure><img src="{{ asset('css/images/img4.png') }}" alt="Service" /></figure>
                   </div>
                   <div class="work_text">
-                     <h3>Quick repair<br><span class="blu">Total Service</span></h3>
+                     <h3>Oil Change<br><span class="blu">Regular Maintenance</span></h3>
                   </div>
                </div>
             </div>
-            <a href="#" class="btn btn-primary read_more">See More</a>
+            <a href="{{ url('/book-appointment') }}" class="btn btn-primary read_more">Book Appointment</a>
          </div>
       </div>
    </div>
@@ -189,7 +189,7 @@
          <div class="col-md-12">
             <div class="titlepage">
                <h2>Testimonials</h2>
-               <p>What our customers say about us</p>
+               <p>What our satisfied customers say about our service</p>
             </div>
          </div>
       </div>
@@ -199,7 +199,6 @@
                <ol class="carousel-indicators">
                   <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                   <li data-target="#myCarousel" data-slide-to="1"></li>
-                  <li data-target="#myCarousel" data-slide-to="2"></li>
                </ol>
                <div class="carousel-inner">
                   <div class="carousel-item active">
@@ -209,17 +208,17 @@
                               <div class="col-md-6 margin_boot">
                                  <div class="test_box">
                                     <i><img src="{{ asset('css/images/tes.jpg') }}" alt="Testimonial" /></i>
-                                    <h4>John Smith</h4>
-                                    <span>Satisfied Customer</span>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.</p>
+                                    <h4>Robert</h4>
+                                    <span>BMW Owner</span>
+                                    <p>"I've been bringing my BMW to this workshop for over 3 years now. Their attention to detail is remarkable, and the technicians are incredibly knowledgeable. What impresses me most is how they take the time to explain what needs to be done and why. Absolutely trustworthy service!"</p>
                                  </div>
                               </div>
                               <div class="col-md-6 margin_boot">
                                  <div class="test_box">
                                     <i><img src="{{ asset('css/images/tes1.jpg') }}" alt="Testimonial" /></i>
-                                    <h4>Rebecca Jones</h4>
-                                    <span>Satisfied Customer</span>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.</p>
+                                    <h4>Sarah</h4>
+                                    <span>Toyota Owner</span>
+                                    <p>"After a disappointing experience at a dealership, I found this workshop and couldn't be happier. Their prices are fair, service is quick, and they stand behind their work. My Toyota is running better than ever, and they even followed up a week later to make sure everything was still perfect."</p>
                                  </div>
                               </div>
                            </div>
@@ -233,17 +232,17 @@
                               <div class="col-md-6 margin_boot">
                                  <div class="test_box">
                                     <i><img src="{{ asset('css/images/tes.jpg') }}" alt="Testimonial" /></i>
-                                    <h4>Michael Brown</h4>
-                                    <span>Satisfied Customer</span>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.</p>
+                                    <h4>David</h4>
+                                    <span>Mercedes Owner</span>
+                                    <p>"I was worried about finding a reliable mechanic for my Mercedes outside the dealership. This workshop exceeded my expectations. They diagnosed an electrical issue that two other places missed, and fixed it for much less than I expected. Their diagnostic equipment is truly state-of-the-art."</p>
                                  </div>
                               </div>
                               <div class="col-md-6 margin_boot">
                                  <div class="test_box">
                                     <i><img src="{{ asset('css/images/tes1.jpg') }}" alt="Testimonial" /></i>
-                                    <h4>Emily Davis</h4>
-                                    <span>Satisfied Customer</span>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.</p>
+                                    <h4>Amanda</h4>
+                                    <span>Honda Owner</span>
+                                    <p>"As a woman who knows very little about cars, I appreciate how this workshop treats me with respect and never tries to upsell unnecessary services. They provide clear explanations, photo documentation of issues, and reasonable prices. I feel comfortable recommending them to anyone."</p>
                                  </div>
                               </div>
                            </div>
@@ -266,45 +265,6 @@
 </div>
 <!-- end testimonial -->
 
-<!-- Contact Us -->
-<div id="contact" class="contact-section py-5">
-   <div class="container">
-      <div class="row">
-         <div class="col-md-6">
-            <h3>Contact Us</h3>
-            <ul class="contact-info list-unstyled">
-               <li><i class="fa fa-map-marker"></i> 123 Workshop Street, City, Country</li>
-               <li><i class="fa fa-phone"></i> +1 234 567 8901</li>
-               <li><i class="fa fa-envelope"></i> info@carworkshop.com</li>
-            </ul>
-         </div>
-         <div class="col-md-6">
-            <form action="{{ url('/contact-admin') }}" method="POST" class="contact-form">
-               @csrf
-               <div class="form-group">
-                  <input type="text" name="user_name" class="form-control" placeholder="Your Name" required>
-               </div>
-               <div class="form-group">
-                  <input type="text" name="phone" class="form-control" placeholder="Phone Number" required>
-               </div>
-               <div class="form-group">
-                  <select name="problem_type" class="form-control" required>
-                     <option value="">Select Problem Type</option>
-                     <option value="Appointment Issue">Appointment Issue</option>
-                     <option value="Car Service">Car Service</option>
-                     <option value="Billing">Billing</option>
-                     <option value="Other">Other</option>
-                  </select>
-               </div>
-               <div class="form-group">
-                  <textarea name="problem_description" class="form-control" placeholder="Problem Description" rows="3" required></textarea>
-               </div>
-               <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-         </div>
-      </div>
-   </div>
-</div>
 @endsection
 
 @section('scripts')

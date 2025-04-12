@@ -6,6 +6,8 @@ use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MechanicController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Middleware\AdminMiddleware;
 
 // Public routes
@@ -27,6 +29,14 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/admin/dashboard', [AuthController::class, 'dashboard'])->name('admin.dashboard');
     Route::put('/admin/update-appointment/{id}', [DashboardController::class, 'update']);
     Route::get('/admin/delete-appointment/{id}', [DashboardController::class, 'delete']);
+    
+    // New mechanic management routes
+    Route::post('/admin/add-mechanic', [MechanicController::class, 'store']);
+    Route::get('/admin/delete-mechanic/{id}', [MechanicController::class, 'destroy']);
+    
+    // New admin management routes
+    Route::post('/admin/add-admin', [AdminController::class, 'store']);
+    Route::get('/admin/delete-admin/{id}', [AdminController::class, 'destroy']);
 });
 
 // 👇 Landing page

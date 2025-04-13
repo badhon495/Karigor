@@ -207,15 +207,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($admins ?? [] as $admin)
-                            <tr>
-                                <td>{{ $admin->name }}</td>
-                                <td>{{ $admin->email }}</td>
-                                <td>
-                                    <a href="{{ url('/admin/delete-admin/' . $admin->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Delete this admin?')">Delete</a>
-                                </td>
-                            </tr>
-                            @endforeach
+                            @forelse($admins ?? collect() as $admin)
+                                @if($admin && is_object($admin) && isset($admin->id))
+                                <tr>
+                                    <td>{{ $admin->name ?? 'N/A' }}</td>
+                                    <td>{{ $admin->email ?? 'N/A' }}</td>
+                                    <td>
+                                        <a href="{{ url('/admin/delete-admin/' . $admin->id) }}" 
+                                           class="btn btn-sm btn-danger" 
+                                           onclick="return confirm('Delete this admin?')">Delete</a>
+                                    </td>
+                                </tr>
+                                @endif
+                            @empty
+                                <tr>
+                                    <td colspan="3" class="text-center">No admins found</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

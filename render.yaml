@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: car-workshop
+    env: docker
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: HOST
+        value: 0.0.0.0
+      - key: APP_URL
+        value: http://0.0.0.0:10000

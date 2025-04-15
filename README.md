@@ -78,7 +78,15 @@ This project is developed for the **CSE391 – Programming for the Internet** co
 
 7. Visit [http://localhost:8000](http://localhost:8000)
 
+
 ## Roles
 
 - **Clients** can book appointments with available mechanics.
 - **Admin** has full control over managing and updating appointments.
+
+
+## Important Instructions
+
+1.  The administrative interface is not visible to regular users on any public-facing pages. The admin login page can be accessed via the following link: [http://localhost:8000/admin/login](https://www.google.com/search?q=http://localhost:8000/admin/login)
+2.  The default administrator email is `admin@gmail.com` and the default password is `admin123`.
+3.  Once logged into the admin panel, you have the ability to add mechanics. These added mechanics will then be available for selection when users book appointments.

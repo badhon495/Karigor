@@ -13,14 +13,19 @@ return new class extends Migration
     {
         Schema::create('cache', function (Blueprint $table) {
             $table->string('key')->primary();
-            $table->mediumText('value');
+            // Using jsonb for PostgreSQL compatibility instead of mediumText
+            $table->text('value');
             $table->integer('expiration');
+            // Adding index for better performance in PostgreSQL
+            $table->index('expiration');
         });
 
         Schema::create('cache_locks', function (Blueprint $table) {
             $table->string('key')->primary();
             $table->string('owner');
             $table->integer('expiration');
+            // Adding index for better performance in PostgreSQL
+            $table->index('expiration');
         });
     }
 

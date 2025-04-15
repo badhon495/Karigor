@@ -1,0 +1,59 @@
+services:
+  - type: web
+    name: karigor
+    env: php
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      npm ci
+      npm run build
+      chmod +x database-setup.sh
+    startCommand: |
+      ./database-setup.sh
+      php artisan serve --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: APP_NAME
+        value: Karigor
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        sync: false
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: karigor-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: karigor-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: karigor-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: karigor-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: karigor-db
+          property: password
+      - key: DB_SSLMODE
+        value: require
+      - key: LOG_CHANNEL
+        value: stack
+      - key: CACHE_DRIVER
+        value: database
+      - key: SESSION_DRIVER
+        value: database
+      - key: FILESYSTEM_DISK
+        value: local
+
+databases:
+  - name: karigor-db
+    plan: free
+    databaseName: karigor
+    ipAllowList: [] # Allow all connections

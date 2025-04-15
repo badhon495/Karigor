@@ -12,13 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('jobs', function (Blueprint $table) {
-            $table->id();
-            $table->string('queue')->index();
-            $table->longText('payload');
-            $table->unsignedTinyInteger('attempts');
-            $table->unsignedInteger('reserved_at')->nullable();
-            $table->unsignedInteger('available_at');
-            $table->unsignedInteger('created_at');
+            $table->bigIncrements('id');
+            $table->string('queue');
+            $table->text('payload');
+            $table->tinyInteger('attempts')->unsigned();
+            $table->integer('reserved_at')->nullable();
+            $table->integer('available_at');
+            $table->integer('created_at');
+            // Adding index for better performance in PostgreSQL
+            $table->index(['queue', 'reserved_at']);
         });
 
         Schema::create('job_batches', function (Blueprint $table) {
@@ -27,8 +29,8 @@ return new class extends Migration
             $table->integer('total_jobs');
             $table->integer('pending_jobs');
             $table->integer('failed_jobs');
-            $table->longText('failed_job_ids');
-            $table->mediumText('options')->nullable();
+            $table->text('failed_job_ids');
+            $table->text('options')->nullable();
             $table->integer('cancelled_at')->nullable();
             $table->integer('created_at');
             $table->integer('finished_at')->nullable();
@@ -39,8 +41,8 @@ return new class extends Migration
             $table->string('uuid')->unique();
             $table->text('connection');
             $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
+            $table->text('payload');
+            $table->text('exception');
             $table->timestamp('failed_at')->useCurrent();
         });
     }

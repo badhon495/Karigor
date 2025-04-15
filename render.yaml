@@ -1,16 +1,9 @@
 services:
   - type: web
     name: karigor
-    env: php
-    buildCommand: |
-      composer install --no-dev --optimize-autoloader
-      npm ci
-      npm run build
-      chmod +x scripts/docker-entrypoint.sh
-    startCommand: |
-      export HOST=0.0.0.0
-      export PORT=10000
-      php artisan serve --host=$HOST --port=$PORT
+    env: docker
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
     envVars:
       - key: APP_NAME
         value: Karigor
@@ -26,6 +19,8 @@ services:
         value: 10000
       - key: DB_CONNECTION
         value: pgsql
+      - key: DB_SSLMODE
+        value: require
       - key: DB_HOST
         fromDatabase:
           name: karigor-db
@@ -46,10 +41,6 @@ services:
         fromDatabase:
           name: karigor-db
           property: password
-      - key: DB_SSLMODE
-        value: require
-      - key: LOG_CHANNEL
-        value: stack
       - key: CACHE_DRIVER
         value: file
       - key: SESSION_DRIVER
@@ -61,4 +52,4 @@ databases:
   - name: karigor-db
     plan: free
     databaseName: karigor
-    ipAllowList: [] # Allow all connections
+    ipAllowList: []

@@ -1,9 +1,12 @@
 FROM richarvey/nginx-php-fpm:latest
 
-COPY . .
+# Copy application code
+COPY . /var/www/html
+
+WORKDIR /var/www/html
 
 # Image config
-ENV SKIP_COMPOSER 1
+ENV SKIP_COMPOSER 0
 ENV WEBROOT /var/www/html/public
 ENV PHP_ERRORS_STDERR 1
 ENV RUN_SCRIPTS 1
@@ -18,11 +21,15 @@ ENV LOG_CHANNEL stderr
 ENV PORT 10000
 ENV HOST 0.0.0.0
 
-# Allow composer to run as root
-ENV COMPOSER_ALLOW_SUPERUSER 1
+# Install composer dependencies
+RUN composer install --no-interaction --optimize-autoloader --no-dev
 
-# Set up the script to run on startup
+# Set permissions
+RUN chown -R nginx:nginx /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Setup script
 COPY ./scripts/docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
+# Start the application
 CMD ["/docker-entrypoint.sh"]

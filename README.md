@@ -78,12 +78,16 @@ This project is developed for the **CSE391 – Programming for the Internet** co
 
 7. Visit [http://localhost:8000](http://localhost:8000)
 
+## Live Demo
+
+You can try the live demo of this website here: [https://karigor.onrender.com/](https://karigor.onrender.com/)
+
+*Note: As this is deployed on a free hosting service, the server may take up to one minute to boot if it has been idle.*
 
 ## Roles
 
 - **Clients** can book appointments with available mechanics.
 - **Admin** has full control over managing and updating appointments.
-
 
 ## Important Instructions
 

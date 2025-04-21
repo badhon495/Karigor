@@ -18,10 +18,10 @@ return new class extends Migration
                 $table->string('address');
                 $table->string('phone');
                 $table->string('car_license');
-                $table->integer('car_engine');
+                $table->string('car_engine');
+                $table->foreignId('mechanic_id')->constrained();
                 $table->date('appointment_date');
-                $table->foreignId('mechanic_id')->constrained()->onDelete('cascade');
-                $table->string('time_slot')->nullable();
+                $table->string('time_slot');
                 $table->timestamps();
             });
         }

@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('appointments', function (Blueprint $table) {
-            $table->string('time_slot')->nullable()->after('appointment_date');
-        });
+        // Check if the column exists before trying to add it
+        if (!Schema::hasColumn('appointments', 'time_slot')) {
+            Schema::table('appointments', function (Blueprint $table) {
+                $table->string('time_slot')->nullable()->after('appointment_date');
+            });
+        }
     }
 
     /**
@@ -21,8 +24,11 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('appointments', function (Blueprint $table) {
-            $table->dropColumn('time_slot');
-        });
+        // Check if the column exists before trying to drop it
+        if (Schema::hasColumn('appointments', 'time_slot')) {
+            Schema::table('appointments', function (Blueprint $table) {
+                $table->dropColumn('time_slot');
+            });
+        }
     }
 };

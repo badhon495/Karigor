@@ -11,10 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('mechanics', function (Blueprint $table) {
-            $table->string('specialty')->nullable()->after('name');
-            $table->integer('experience')->nullable()->after('specialty');
-        });
+        if (Schema::hasTable('mechanics')) {
+            Schema::table('mechanics', function (Blueprint $table) {
+                if (!Schema::hasColumn('mechanics', 'specialty')) {
+                    $table->string('specialty')->nullable();
+                }
+                if (!Schema::hasColumn('mechanics', 'experience')) {
+                    $table->integer('experience')->nullable();
+                }
+            });
+        }
     }
 
     /**
@@ -22,8 +28,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('mechanics', function (Blueprint $table) {
-            $table->dropColumn(['specialty', 'experience']);
-        });
+        if (Schema::hasTable('mechanics')) {
+            Schema::table('mechanics', function (Blueprint $table) {
+                $table->dropColumn(['specialty', 'experience']);
+            });
+        }
     }
 };

@@ -1,8 +1,6 @@
-## Overview
+## Karigor - Online Car Workshop Appointment System
 
 This project is developed for the **CSE391 – Programming for the Internet** course assignment. It addresses the need for a more efficient appointment system in a car workshop that employs five senior mechanics. The goal is to eliminate in-person chaos and streamline the mechanic assignment process using an online booking system.
-
-**Note: This branch is configured for deployment to Render.**
 
 ## Features
 
@@ -18,6 +16,7 @@ This project is developed for the **CSE391 – Programming for the Internet** co
   - Desired Mechanic (from the list of available mechanics)
 - A mechanic can be assigned to **a maximum of 4 active cars per day**.
 - If the desired mechanic is fully booked, they will not appear in the available list.
+- Clients can not book multiple appointments for the same day.
 
 ### Admin Panel
 - Admin can view all booked appointments with the following details:
@@ -33,21 +32,68 @@ This project is developed for the **CSE391 – Programming for the Internet** co
 ## Tech Stack
 
 - **Backend Framework:** Laravel (PHP)
-- **Database:** 
-  - Development: SQLite
-  - Production: PostgreSQL (Render free tier doesn't support SQLite)
-- **Frontend:** HTML, JavaScript, Blade Templates (Laravel)
-- **Deployment:** Render
+- **Database:** PostgreSQL (Production), SQLite (Local Development)
+- **Frontend:** HTML, CSS, JavaScript, Bootstrap, Blade Templates (Laravel)
+- **Deployment:** Render.com (Live Demo)
 
-## Getting Started
 
-### Prerequisites
-- PHP 8.x
-- Composer
-- SQLite (for local development)
-- PostgreSQL (for production)
+## Prerequisites
 
-### Installation
+Before setting up the project, you need to install the following software on your system:
+
+### 1. Install Git
+
+**Windows:**
+- Download Git from [https://git-scm.com/download/win](https://git-scm.com/download/win)
+- Run the installer and follow the setup wizard
+- Accept default settings for most options
+
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt update
+sudo apt install git
+```
+
+### 2. Install PHP 8.x
+
+**Windows:**
+- Download PHP from [https://windows.php.net/download/](https://windows.php.net/download/)
+- Choose "Thread Safe" version for your architecture (x64 or x86)
+- Extract to `C:\php` (or your preferred location)
+- Add PHP to your system PATH:
+  - Open System Properties → Advanced → Environment Variables
+  - Add `C:\php` to your PATH variable
+- Verify installation: Open Command Prompt and run `php -v`
+
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt update
+sudo apt install php8.3 php8.3-cli php8.3-xml php8.3-sqlite3 php8.3-mbstring php8.3-curl php8.3-zip
+```
+
+### 3. Install Composer
+
+**Windows:**
+- Download Composer installer from [https://getcomposer.org/download/](https://getcomposer.org/download/)
+- Run `Composer-Setup.exe` and follow the installation wizard
+- Verify installation: Open Command Prompt and run `composer --version`
+
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt update
+sudo apt install composer
+```
+
+### 4. Verify Installation
+
+After installing all prerequisites, verify your setup:
+```bash
+git --version
+php -v
+composer --version
+```
+
+## Installation
 
 1. Clone the repository:
    ```bash
@@ -67,27 +113,24 @@ This project is developed for the **CSE391 – Programming for the Internet** co
    ```
 
 4. Configure database in `.env`:
-   
-   For local development with SQLite:
-   ```
+
+   **For Local Development (SQLite - Recommended for beginners):**
+   ```env
    DB_CONNECTION=sqlite
    DB_DATABASE=./database/database.sqlite
    ```
    
-   For production deployment with PostgreSQL on Render:
-   ```
+   **For Production or Advanced Setup (PostgreSQL):**
+   ```env
    DB_CONNECTION=pgsql
-   DB_HOST=127.0.0.1
+   DB_HOST=your-postgres-host
    DB_PORT=5432
-   DB_DATABASE=karigor
-   DB_USERNAME=postgres
-   DB_PASSWORD=postgres
+   DB_DATABASE=your-database-name
+   DB_USERNAME=your-username
+   DB_PASSWORD=your-password
    ```
-
-   Or use the DATABASE_URL configuration (for Render):
-   ```
-   DATABASE_URL=postgres://username:password@host:port/database
-   ```
+   
+   **Note:** The live demo uses PostgreSQL, but for local development, SQLite is easier to set up.
 
 5. Run migrations:
    ```bash
@@ -101,52 +144,69 @@ This project is developed for the **CSE391 – Programming for the Internet** co
 
 7. Visit [http://localhost:8000](http://localhost:8000)
 
-## Migrating from SQLite to PostgreSQL
+## Live Demo
 
-For local development, this project includes utility scripts to help with PostgreSQL setup and migration:
+You can try the live demo of this website here: [https://karigor.onrender.com/](https://karigor.onrender.com/)
 
-1. **Fix PostgreSQL Authentication**:
-   ```bash
-   chmod +x fix_postgres_auth.sh
-   ./fix_postgres_auth.sh
-   ```
-   This script helps resolve authentication issues with PostgreSQL by offering three options:
-   - Set a new password for the PostgreSQL user
-   - Create a .pgpass file for passwordless authentication
-   - Configure PostgreSQL to use 'trust' authentication
-
-2. **Migrate from SQLite to PostgreSQL**:
-   ```bash
-   chmod +x migrate_to_postgres.sh
-   ./migrate_to_postgres.sh
-   ```
-   This script:
-   - Installs PostgreSQL if not already installed
-   - Creates a database for the project
-   - Configures PostgreSQL to accept connections
-   - Updates the .env file with PostgreSQL settings
-   - Runs migrations to set up the database
-
-3. **Fix Common Issues**:
-   ```bash
-   chmod +x fix.sh
-   ./fix.sh
-   ```
-   This utility script fixes minor errors that may occur during setup.
-
-After running these scripts, your application will be configured to use PostgreSQL locally, similar to the configuration used in production on Render.
+*Note: As this is deployed on a free hosting service, the server may take up to one minute to boot if it has been idle.*
 
 ## Roles
 
 - **Clients** can book appointments with available mechanics.
 - **Admin** has full control over managing and updating appointments.
 
+## Important Instructions
+
+1. The administrative interface is not visible to regular users on any public-facing pages. The admin login page can be accessed via: [http://localhost:8000/admin/login](http://localhost:8000/admin/login)
+2. The default administrator email is `admin@gmail.com` and the default password is `admin123`.
+3. Once logged into the admin panel, you have the ability to add mechanics. These added mechanics will then be available for selection when users book appointments.
+
+## Troubleshooting
+
+### Common Issues and Solutions
+
+**1. "Please provide a valid cache path" Error:**
+```bash
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+```
+
+**2. Permission Denied Errors (Linux/Mac):**
+```bash
+sudo chmod -R 775 storage bootstrap/cache
+sudo chown -R www-data:www-data storage bootstrap/cache
+```
+
+**3. Missing PHP Extensions:**
+```bash
+# Linux (Ubuntu/Debian)
+sudo apt install php8.3-mbstring php8.3-xml php8.3-curl php8.3-zip php8.3-sqlite3
+```
+
+**4. Composer Install Fails:**
+```bash
+composer clear-cache
+composer install --no-cache
+```
+
+**5. Migration Errors:**
+```bash
+php artisan migrate:fresh --force
+```
+
+**6. Key Not Set Error:**
+```bash
+php artisan key:generate
+```
+
+### Need Help?
+
+If you encounter any issues not covered above, please:
+1. Check the Laravel logs in `storage/logs/laravel.log`
+2. Ensure all prerequisites are properly installed
+3. Verify your `.env` file configuration
+4. Try running `php artisan config:cache` after making changes
+
 ## Deployment
-
-This project is configured to deploy on Render using PostgreSQL as the database. The free tier of Render does not support SQLite, which is why PostgreSQL is used for the production environment.
-
-Key deployment configurations:
-- Database: PostgreSQL
-- Web Service: PHP
-- Build Command: `composer install && php artisan migrate --force`
-- Start Command: `php artisan serve --host 0.0.0.0 --port $PORT`
+This project is hosted on Render.com, a free hosting service. The live demo is available at [https://karigor.onrender.com/](https://karigor.onrender.com/) and the database is hosted on NeonDB.

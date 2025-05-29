@@ -28,6 +28,7 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 # Expose the port that the application will run on
 EXPOSE 10000
 
-CMD ["/start.sh"]
+RUN chmod +x ./scripts/start.sh
+CMD ["./scripts/start.sh"]
 
 # https://github.com/codingnninja/laravel-render-template

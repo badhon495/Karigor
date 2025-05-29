@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Install Composer dependencies if not already installed
+composer install --no-interaction --prefer-dist --optimize-autoloader
+
 # Run Laravel migrations
 php artisan migrate --force
 

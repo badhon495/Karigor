@@ -6,18 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    public $withinTransaction = false;
+
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        if (!Schema::hasTable('mechanics')) {
-            Schema::create('mechanics', function (Blueprint $table) {
-                $table->id();
-                $table->string('name');
-                $table->timestamps();
-            });
-        }
+        Schema::create('mechanics', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 191);
+            $table->string('specialty')->nullable();
+            $table->integer('experience')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**

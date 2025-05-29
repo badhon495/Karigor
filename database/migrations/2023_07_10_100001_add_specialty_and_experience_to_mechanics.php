@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (Schema::hasTable('mechanics')) {
-            Schema::table('mechanics', function (Blueprint $table) {
-                if (!Schema::hasColumn('mechanics', 'specialty')) {
-                    $table->string('specialty')->nullable();
-                }
-                if (!Schema::hasColumn('mechanics', 'experience')) {
-                    $table->integer('experience')->nullable();
-                }
-            });
-        }
+//        if (Schema::hasTable('mechanics')) {
+//            Schema::table('mechanics', function (Blueprint $table) {
+//                $table->string('specialty')->nullable();
+//                $table->integer('experience')->nullable();
+//            });
+//        }
     }
 
     /**
@@ -28,10 +24,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        if (Schema::hasTable('mechanics')) {
-            Schema::table('mechanics', function (Blueprint $table) {
-                $table->dropColumn(['specialty', 'experience']);
-            });
-        }
+//        if (Schema::hasTable('mechanics')) {
+//            Schema::table('mechanics', function (Blueprint $table) {
+//                $table->dropColumn(['specialty', 'experience']);
+//            });
+//        }
     }
 };

@@ -16,6 +16,7 @@ This project is developed for the **CSE391 – Programming for the Internet** co
   - Desired Mechanic (from the list of available mechanics)
 - A mechanic can be assigned to **a maximum of 4 active cars per day**.
 - If the desired mechanic is fully booked, they will not appear in the available list.
+- Clients can not book multiple appointments for the same day.
 
 ### Admin Panel
 - Admin can view all booked appointments with the following details:
@@ -35,13 +36,12 @@ This project is developed for the **CSE391 – Programming for the Internet** co
 - **Frontend:** HTML, CSS, JavaScript, Bootstrap, Blade Templates (Laravel)
 - **Deployment:** Render.com (Live Demo)
 
-## Getting Started
 
-### Prerequisites
+## Prerequisites
 
 Before setting up the project, you need to install the following software on your system:
 
-#### 1. Install Git
+### 1. Install Git
 
 **Windows:**
 - Download Git from [https://git-scm.com/download/win](https://git-scm.com/download/win)
@@ -54,7 +54,7 @@ sudo apt update
 sudo apt install git
 ```
 
-#### 2. Install PHP 8.x
+### 2. Install PHP 8.x
 
 **Windows:**
 - Download PHP from [https://windows.php.net/download/](https://windows.php.net/download/)
@@ -71,7 +71,7 @@ sudo apt update
 sudo apt install php8.3 php8.3-cli php8.3-xml php8.3-sqlite3 php8.3-mbstring php8.3-curl php8.3-zip
 ```
 
-#### 3. Install Composer
+### 3. Install Composer
 
 **Windows:**
 - Download Composer installer from [https://getcomposer.org/download/](https://getcomposer.org/download/)
@@ -84,14 +84,7 @@ sudo apt update
 sudo apt install composer
 ```
 
-Or install manually:
-```bash
-curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
-sudo chmod +x /usr/local/bin/composer
-```
-
-#### 4. Verify Installation
+### 4. Verify Installation
 
 After installing all prerequisites, verify your setup:
 ```bash
@@ -100,7 +93,7 @@ php -v
 composer --version
 ```
 
-### Installation
+## Installation
 
 1. Clone the repository:
    ```bash

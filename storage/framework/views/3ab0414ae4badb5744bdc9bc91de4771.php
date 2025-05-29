@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Bootstrap and CSS files with proper asset paths -->
-    <link rel="stylesheet" href="{{ asset('css/css_temp/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/css_temp/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/css_temp/responsive.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/css_temp/bootstrap.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/css_temp/style.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/css_temp/responsive.css')); ?>">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-    <link rel="icon" href="{{ asset('css/images/fevicon.png') }}" type="image/gif" />
-    @yield('styles')
+    <link rel="icon" href="<?php echo e(asset('css/images/fevicon.png')); ?>" type="image/gif" />
+    <?php echo $__env->yieldContent('styles'); ?>
 </head>
 <body class="main-layout">
     <!-- header -->
@@ -25,7 +25,7 @@
                         <div class="full">
                             <div class="center-desk">
                                 <div class="logo">
-                                    <a href="{{ url('/') }}">Karigor</a>
+                                    <a href="<?php echo e(url('/')); ?>">Karigor</a>
                                 </div>
                             </div>
                         </div>
@@ -38,13 +38,13 @@
                             <div class="collapse navbar-collapse" id="navbarsExample04">
                                 <ul class="navbar-nav mr-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/book-appointment') }}">Book Appointment</a>
+                                        <a class="nav-link" href="<?php echo e(url('/book-appointment')); ?>">Book Appointment</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/track') }}">Track Appointment</a>
+                                        <a class="nav-link" href="<?php echo e(url('/track')); ?>">Track Appointment</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/contact-admin') }}">Contact Us</a>
+                                        <a class="nav-link" href="<?php echo e(url('/contact-admin')); ?>">Contact Us</a>
                                     </li>
                                 </ul>
                             </div>
@@ -58,7 +58,7 @@
     <!-- end header -->
 
     <main>
-        @yield('content')
+        <?php echo $__env->yieldContent('content'); ?>
     </main>
 
     <!-- footer -->
@@ -105,10 +105,11 @@
      <!-- end footer -->
 
     <!-- JavaScript files with proper asset paths -->
-    <script src="{{ asset('js/js_temp/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/js_temp/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/js_temp/jquery-3.0.0.min.js') }}"></script>
-    <script src="{{ asset('js/js_temp/custom.js') }}"></script>
-    @yield('scripts')
+    <script src="<?php echo e(asset('js/js_temp/jquery.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/js_temp/bootstrap.bundle.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/js_temp/jquery-3.0.0.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/js_temp/custom.js')); ?>"></script>
+    <?php echo $__env->yieldContent('scripts'); ?>
 </body>
 </html>
+<?php /**PATH /home/badhon/Documents/CSE391/ass3/Karigor/resources/views/layouts/app.blade.php ENDPATH**/ ?>

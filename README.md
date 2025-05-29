@@ -31,15 +31,74 @@ This project is developed for the **CSE391 – Programming for the Internet** co
 ## Tech Stack
 
 - **Backend Framework:** Laravel (PHP)
-- **Database:** SQLite
-- **Frontend:** HTML, JavaScript, Blade Templates (Laravel)
+- **Database:** PostgreSQL (Production), SQLite (Local Development)
+- **Frontend:** HTML, CSS, JavaScript, Bootstrap, Blade Templates (Laravel)
+- **Deployment:** Render.com (Live Demo)
 
 ## Getting Started
 
 ### Prerequisites
-- PHP 8.x
-- Composer
-- SQLite
+
+Before setting up the project, you need to install the following software on your system:
+
+#### 1. Install Git
+
+**Windows:**
+- Download Git from [https://git-scm.com/download/win](https://git-scm.com/download/win)
+- Run the installer and follow the setup wizard
+- Accept default settings for most options
+
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt update
+sudo apt install git
+```
+
+#### 2. Install PHP 8.x
+
+**Windows:**
+- Download PHP from [https://windows.php.net/download/](https://windows.php.net/download/)
+- Choose "Thread Safe" version for your architecture (x64 or x86)
+- Extract to `C:\php` (or your preferred location)
+- Add PHP to your system PATH:
+  - Open System Properties → Advanced → Environment Variables
+  - Add `C:\php` to your PATH variable
+- Verify installation: Open Command Prompt and run `php -v`
+
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt update
+sudo apt install php8.3 php8.3-cli php8.3-xml php8.3-sqlite3 php8.3-mbstring php8.3-curl php8.3-zip
+```
+
+#### 3. Install Composer
+
+**Windows:**
+- Download Composer installer from [https://getcomposer.org/download/](https://getcomposer.org/download/)
+- Run `Composer-Setup.exe` and follow the installation wizard
+- Verify installation: Open Command Prompt and run `composer --version`
+
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt update
+sudo apt install composer
+```
+
+Or install manually:
+```bash
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+sudo chmod +x /usr/local/bin/composer
+```
+
+#### 4. Verify Installation
+
+After installing all prerequisites, verify your setup:
+```bash
+git --version
+php -v
+composer --version
+```
 
 ### Installation
 
@@ -60,11 +119,25 @@ This project is developed for the **CSE391 – Programming for the Internet** co
    php artisan key:generate
    ```
 
-4. Configure SQLite in `.env`:
-   ```
+4. Configure database in `.env`:
+
+   **For Local Development (SQLite - Recommended for beginners):**
+   ```env
    DB_CONNECTION=sqlite
    DB_DATABASE=./database/database.sqlite
    ```
+   
+   **For Production or Advanced Setup (PostgreSQL):**
+   ```env
+   DB_CONNECTION=pgsql
+   DB_HOST=your-postgres-host
+   DB_PORT=5432
+   DB_DATABASE=your-database-name
+   DB_USERNAME=your-username
+   DB_PASSWORD=your-password
+   ```
+   
+   **Note:** The live demo uses PostgreSQL, but for local development, SQLite is easier to set up.
 
 5. Run migrations:
    ```bash
@@ -91,6 +164,53 @@ You can try the live demo of this website here: [https://karigor.onrender.com/](
 
 ## Important Instructions
 
-1.  The administrative interface is not visible to regular users on any public-facing pages. The admin login page can be accessed via the following link: [http://localhost:8000/admin/login](https://www.google.com/search?q=http://localhost:8000/admin/login)
-2.  The default administrator email is `admin@gmail.com` and the default password is `admin123`.
-3.  Once logged into the admin panel, you have the ability to add mechanics. These added mechanics will then be available for selection when users book appointments.
+1. The administrative interface is not visible to regular users on any public-facing pages. The admin login page can be accessed via: [http://localhost:8000/admin/login](http://localhost:8000/admin/login)
+2. The default administrator email is `admin@gmail.com` and the default password is `admin123`.
+3. Once logged into the admin panel, you have the ability to add mechanics. These added mechanics will then be available for selection when users book appointments.
+
+## Troubleshooting
+
+### Common Issues and Solutions
+
+**1. "Please provide a valid cache path" Error:**
+```bash
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+```
+
+**2. Permission Denied Errors (Linux/Mac):**
+```bash
+sudo chmod -R 775 storage bootstrap/cache
+sudo chown -R www-data:www-data storage bootstrap/cache
+```
+
+**3. Missing PHP Extensions:**
+```bash
+# Linux (Ubuntu/Debian)
+sudo apt install php8.3-mbstring php8.3-xml php8.3-curl php8.3-zip php8.3-sqlite3
+```
+
+**4. Composer Install Fails:**
+```bash
+composer clear-cache
+composer install --no-cache
+```
+
+**5. Migration Errors:**
+```bash
+php artisan migrate:fresh --force
+```
+
+**6. Key Not Set Error:**
+```bash
+php artisan key:generate
+```
+
+### Need Help?
+
+If you encounter any issues not covered above, please:
+1. Check the Laravel logs in `storage/logs/laravel.log`
+2. Ensure all prerequisites are properly installed
+3. Verify your `.env` file configuration
+4. Try running `php artisan config:cache` after making changes

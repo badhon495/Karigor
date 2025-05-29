@@ -1,4 +1,4 @@
-## Overview
+## Karigor - Online Car Workshop Appointment System
 
 This project is developed for the **CSE391 – Programming for the Internet** course assignment. It addresses the need for a more efficient appointment system in a car workshop that employs five senior mechanics. The goal is to eliminate in-person chaos and streamline the mechanic assignment process using an online booking system.
 

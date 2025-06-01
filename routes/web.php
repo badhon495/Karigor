@@ -39,7 +39,7 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/admin/delete-admin/{id}', [AdminController::class, 'destroy']);
 });
 
-// 👇 Landing page
+// Landing page
 Route::get('/', function () {
     return view('landing');
 });

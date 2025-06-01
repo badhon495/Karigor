@@ -121,7 +121,16 @@
     }
     #banner1 a.carousel-control-next,
     #banner1 a.carousel-control-prev {
-        top: 92%;
+        top: auto !important;
+        bottom: 8px !important;
+        left: auto;
+        right: auto;
+    }
+    #banner1 a.carousel-control-prev {
+        left: 32px !important;
+    }
+    #banner1 a.carousel-control-next {
+        right: 32px !important;
     }
     .titlepage h2 {
         font-size: 34px;
@@ -184,20 +193,31 @@
         float: left;
     }
     .text-bg h1 {
-        font-size: 47px;
-        line-height: 40px;
-        padding-bottom: 10px;
-    }
-    .three_box {
-        padding: 0 0px;
+        font-size: 32px;
+        line-height: 36px;
+        padding-bottom: 15px;
     }
     .text-bg {
         padding-left: 0px;
         padding-bottom: 30px;
     }
     .text-bg span {
-        font-size: 27px;
-        line-height: 52px;
+        font-size: 18px;
+        line-height: 28px;
+    }
+    .text-bg a {
+        max-width: 100px;
+        font-size: 13px;
+        padding: 8px 0;
+    }
+    #banner1 .carousel-control-prev i,
+    #banner1 .carousel-control-next i {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+    .three_box {
+        padding: 0 0px;
     }
     .box_text {
         margin-top: 30px;
@@ -214,10 +234,6 @@
     }
     .margin_boot {
         margin-bottom: 20px;
-    }
-    .text-bg a {
-        max-width: 132px;
-        padding: 10px 0px;
     }
     .titlepage h2 {
         font-size: 27px;

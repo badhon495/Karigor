@@ -444,31 +444,27 @@ ul.btn li:last-child {
      display: none;
 }
 
-.carousel-control-prev {
-     left: inherit;
-     right: 17%;
-}
-
-.carousel-control-next {
-     right: 12%;
-}
-
 #banner1 a.carousel-control-next,
 #banner1 a.carousel-control-prev {
-     opacity: 1;
-     top: 50%; /* Vertically center the buttons */
-     transform: translateY(70%); /* Adjust for exact vertical centering */
-     /* Remove the top: 100% */
+     position: absolute;
+     top: 100%;
+     transform: none;
+     z-index: 10;
+     margin: 0;
+     width: auto;
+     height: auto;
 }
 
 #banner1 a.carousel-control-prev {
-     left: 10px; /* Adjust the left position as needed */
- }
- 
- #banner1 a.carousel-control-next {
-     right: 10px; /* Adjust the right position as needed */
- }
- 
+     left: 30px;
+     right: auto;
+     
+}
+
+#banner1 a.carousel-control-next {
+     right: 30px;
+     left: auto;
+}
 
 #banner1 .carousel-control-next i,
 #banner1 .carousel-control-prev i {
@@ -481,11 +477,11 @@ ul.btn li:last-child {
      align-items: center;
      justify-content: center;
      color: #000;
+     font-size: 24px;
+     transition: background 0.3s, color 0.3s;
 }
 
-#banner1 .carousel-control-next i:focus,
 #banner1 .carousel-control-next i:hover,
-#banner1 .carousel-control-prev i:focus,
 #banner1 .carousel-control-prev i:hover {
      background: #2f2c2c;
      color: #fff;
@@ -966,3 +962,40 @@ ul.social_icon li a:hover {
 
 
 /** end footer **/
+
+/* Prevent chevrons from overlapping buttons */
+#banner1 a.carousel-control-prev,
+#banner1 a.carousel-control-next {
+    z-index: 10;
+    pointer-events: auto;
+}
+
+/* Ensure carousel container has relative positioning */
+#banner1 {
+    position: relative;
+}
+
+/* Ensure chevrons are always above the banner image but below main content/buttons */
+.banner_main {
+    position: relative;
+    z-index: 1;
+}
+
+/* On small screens, move chevrons further to the sides to avoid overlap */
+@media (max-width: 767px) {
+  #banner1 a.carousel-control-prev {
+    left: 10px;
+    bottom: 0;
+  }
+  #banner1 a.carousel-control-next {
+    right: 10px;
+    bottom: 0;
+  }
+}
+
+/* Add extra bottom margin to buttons in banner to avoid overlap */
+.banner_main .text-bg a {
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 3;
+}

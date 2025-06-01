@@ -33,7 +33,7 @@
                      </div>
                      <div class="col-md-6">
                         <div class="text_img">
-                           <figure><img src="{{ asset('css/images/car.png') }}" alt="Car" /></figure>
+                           <figure><img src="{{ asset('css/images/car.png') }}" alt="Car" class="img-fluid" /></figure>
                         </div>
                      </div>
                   </div>
@@ -53,7 +53,7 @@
                      </div>
                      <div class="col-md-6">
                         <div class="text_img">
-                           <figure><img src="{{ asset('css/images/car.png') }}" alt="Car" /></figure>
+                           <figure><img src="{{ asset('css/images/car.png') }}" alt="Car" class="img-fluid" /></figure>
                         </div>
                      </div>
                   </div>
@@ -78,21 +78,21 @@
          <div class="col-md-4">
             <div class="box_text">
                <h3>DIAGNOSTICS</h3>
-               <i><img src="{{ asset('css/images/thr.png') }}" alt="Auto Diagnose" /></i>
+               <i><img src="{{ asset('css/images/thr.png') }}" alt="Auto Diagnose" class="img-fluid" /></i>
                <p>State-of-the-art computer diagnostics to identify issues with precision. Our advanced equipment detects problems quickly for accurate repairs.</p>
             </div>
          </div>
          <div class="col-md-4">
             <div class="box_text">
                <h3>REPAIR SERVICE</h3>
-               <i><img src="{{ asset('css/images/thr1.png') }}" alt="Auto Repair" /></i>
+               <i><img src="{{ asset('css/images/thr1.png') }}" alt="Auto Repair" class="img-fluid" /></i>
                <p>Expert technicians perform quality repairs for all vehicle makes and models. From engine work to electrical systems, we fix it right.</p>
             </div>
          </div>
          <div class="col-md-4">
             <div class="box_text">
                <h3>MAINTENANCE</h3>
-               <i><img src="{{ asset('css/images/thr2.png') }}" alt="Auto Maintenance" /></i>
+               <i><img src="{{ asset('css/images/thr2.png') }}" alt="Auto Maintenance" class="img-fluid" /></i>
                <p>Regular maintenance packages to keep your vehicle running smoothly. Scheduled services prevent costly repairs and extend your car's life.</p>
             </div>
          </div>
@@ -144,7 +144,7 @@
             <div class="row">
                <div class="col-md-6 margin_bottom">
                   <div class="work">
-                     <figure><img src="{{ asset('css/images/img1.png') }}" alt="Service" /></figure>
+                     <figure><img src="{{ asset('css/images/img1.png') }}" alt="Service" class="img-fluid" /></figure>
                   </div>
                   <div class="work_text">
                      <h3>Engine Repair<br><span class="blu">Complete Overhaul</span></h3>
@@ -152,7 +152,7 @@
                </div>
                <div class="col-md-6 margin_bottom">
                   <div class="work">
-                     <figure><img src="{{ asset('css/images/img2.png') }}" alt="Service" /></figure>
+                     <figure><img src="{{ asset('css/images/img2.png') }}" alt="Service" class="img-fluid" /></figure>
                   </div>
                   <div class="work_text">
                      <h3>Brake Service<br><span class="blu">Safety Assured</span></h3>
@@ -160,7 +160,7 @@
                </div>
                <div class="col-md-6 margin_bottom">
                   <div class="work">
-                     <figure><img src="{{ asset('css/images/img3.png') }}" alt="Service" /></figure>
+                     <figure><img src="{{ asset('css/images/img3.png') }}" alt="Service" class="img-fluid" /></figure>
                   </div>
                   <div class="work_text">
                      <h3>Electric Systems<br><span class="blu">Diagnostic & Repair</span></h3>
@@ -168,7 +168,7 @@
                </div>
                <div class="col-md-6 margin_bottom">
                   <div class="work">
-                     <figure><img src="{{ asset('css/images/img4.png') }}" alt="Service" /></figure>
+                     <figure><img src="{{ asset('css/images/img4.png') }}" alt="Service" class="img-fluid" /></figure>
                   </div>
                   <div class="work_text">
                      <h3>Oil Change<br><span class="blu">Regular Maintenance</span></h3>
@@ -207,7 +207,7 @@
                            <div class="row">
                               <div class="col-md-6 margin_boot">
                                  <div class="test_box">
-                                    <i><img src="{{ asset('css/images/tes.jpg') }}" alt="Testimonial" /></i>
+                                    <i><img src="{{ asset('css/images/tes.jpg') }}" alt="Testimonial" class="img-fluid" /></i>
                                     <h4>Robert</h4>
                                     <span>BMW Owner</span>
                                     <p>"I've been bringing my BMW to this workshop for over 3 years now. Their attention to detail is remarkable, and the technicians are incredibly knowledgeable. What impresses me most is how they take the time to explain what needs to be done and why. Absolutely trustworthy service!"</p>
@@ -215,7 +215,7 @@
                               </div>
                               <div class="col-md-6 margin_boot">
                                  <div class="test_box">
-                                    <i><img src="{{ asset('css/images/tes1.jpg') }}" alt="Testimonial" /></i>
+                                    <i><img src="{{ asset('css/images/tes1.jpg') }}" alt="Testimonial" class="img-fluid" /></i>
                                     <h4>Sarah</h4>
                                     <span>Toyota Owner</span>
                                     <p>"After a disappointing experience at a dealership, I found this workshop and couldn't be happier. Their prices are fair, service is quick, and they stand behind their work. My Toyota is running better than ever, and they even followed up a week later to make sure everything was still perfect."</p>
@@ -231,7 +231,7 @@
                            <div class="row">
                               <div class="col-md-6 margin_boot">
                                  <div class="test_box">
-                                    <i><img src="{{ asset('css/images/tes.jpg') }}" alt="Testimonial" /></i>
+                                    <i><img src="{{ asset('css/images/tes.jpg') }}" alt="Testimonial" class="img-fluid" /></i>
                                     <h4>David</h4>
                                     <span>Mercedes Owner</span>
                                     <p>"I was worried about finding a reliable mechanic for my Mercedes outside the dealership. This workshop exceeded my expectations. They diagnosed an electrical issue that two other places missed, and fixed it for much less than I expected. Their diagnostic equipment is truly state-of-the-art."</p>
@@ -239,7 +239,7 @@
                               </div>
                               <div class="col-md-6 margin_boot">
                                  <div class="test_box">
-                                    <i><img src="{{ asset('css/images/tes1.jpg') }}" alt="Testimonial" /></i>
+                                    <i><img src="{{ asset('css/images/tes1.jpg') }}" alt="Testimonial" class="img-fluid" /></i>
                                     <h4>Amanda</h4>
                                     <span>Honda Owner</span>
                                     <p>"As a woman who knows very little about cars, I appreciate how this workshop treats me with respect and never tries to upsell unnecessary services. They provide clear explanations, photo documentation of issues, and reasonable prices. I feel comfortable recommending them to anyone."</p>

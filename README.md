@@ -217,3 +217,9 @@ If you encounter any issues not covered above, please:
 2. Ensure all prerequisites are properly installed
 3. Verify your `.env` file configuration
 4. Try running `php artisan config:cache` after making changes
+
+---
+
+<div align="center">
+  <p>⭐ Star this repo if you found it helpful!</p>
+</div>

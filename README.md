@@ -1,6 +1,6 @@
 <div align="center">
 
-# Karigor - Online Car Workshop Appointment System
+# Karigor
 
 ![Laravel](https://img.shields.io/badge/Laravel-11.x-red?style=flat-square&logo=laravel)
 ![PHP](https://img.shields.io/badge/PHP-8.2+-blue?style=flat-square&logo=php)
@@ -8,43 +8,23 @@
 ![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?style=flat-square&logo=vite)
 
 
-This project is developed for the **CSE391 – Programming for the Internet** course assignment. It addresses the need for a more efficient appointment system in a car workshop that employs five senior mechanics. The goal is to eliminate in-person chaos and streamline the mechanic assignment process using an online booking system.
+This project is an online car workshop appointment system designed to bring efficiency and organization to the service process. It aims to eliminate the hassle of in-person bookings and reduce chaos by allowing customers to schedule appointments online, while also streamlining the assignment of mechanics through a structured digital system.
 
 </div>
 
 ## Features
 
 ### User Panel (Client Side)
-- Clients can book an appointment online without visiting the workshop.
-- Inputs required from client:
-  - Name
-  - Address
-  - Phone Number
-  - Car License Number
-  - Car Engine Number
-  - Preferred Appointment Date
-  - Desired Mechanic (from the list of available mechanics)
+- Clients can book an appointment online without creating an account.
 - A mechanic can be assigned to **a maximum of 4 active cars per day**.
 - If the desired mechanic is fully booked, they will not appear in the available list.
 - Clients can not book multiple appointments for the same day.
 
 ### Admin Panel
-- Admin can view all booked appointments with the following details:
-  - Client Name
-  - Phone Number
-  - Car License Number
-  - Appointment Date
-  - Assigned Mechanic
+- Admin can view all booked appointments.
 - Admin can:
   - Modify the appointment date
   - Reassign mechanics (only if the target mechanic has less than 4 assignments)
-
-## Tech Stack
-
-- **Backend Framework:** Laravel (PHP)
-- **Database:** PostgreSQL (Production), SQLite (Local Development)
-- **Frontend:** HTML, CSS, JavaScript, Bootstrap, Blade Templates (Laravel)
-- **Deployment:** Render.com (Live Demo)
 
 
 ## Prerequisites
